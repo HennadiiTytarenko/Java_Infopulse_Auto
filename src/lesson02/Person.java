@@ -84,6 +84,16 @@ public class Person {
         System.out.println(person1==person2);
         System.out.println(person1.equals(person3));
         System.out.println(person1.equals(person2));
+
+
+        System.out.println(person1.toString());
+        System.out.println(person2.toString());
+        System.out.println(person3.toString());
+
+        System.out.println(person1.hashCode());
+        System.out.println(person2.hashCode());
+        System.out.println(person3.hashCode());
+
     }
 
 
