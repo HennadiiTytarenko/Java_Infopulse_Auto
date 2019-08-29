@@ -17,9 +17,14 @@ import java.math.BigDecimal;
                 a = b;
                 b = c;
                 c = a.add(b);
-                System.out.println(c);
+                if (i < k) {
+                    System.out.print(c + ", ");
+                    printFibonacciNumbers(k);
+                }
+                else System.out.print(c + ".");
                 printFibonacciNumbers(k);
             }
+
         }
 
         public static void main(String[] args) {
@@ -30,7 +35,7 @@ import java.math.BigDecimal;
                 System.out.println("Please enter a positive number more than 0");
             }
             else
-                System.out.println("Result:\n" + "0");
+                System.out.print("Result: " + "0, ");
                 printFibonacciNumbers(n-1);
         }
 
