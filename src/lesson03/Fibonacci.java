@@ -1,44 +1,43 @@
 package lesson03;
 
-import java.util.Scanner;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
-  public  class Fibonacci {
+public class Fibonacci {
+    public static void main(String[] args) {
 
-        static BigDecimal a = new BigDecimal("1");
-        static BigDecimal b = new BigDecimal("1");
-        static BigDecimal c = new BigDecimal("0");
-        static int i = 0;
-
-
-        public static void printFibonacciNumbers(int k){
-            if (i < k) {
-                ++i;
-                a = b;
-                b = c;
-                c = a.add(b);
-                if (i < k) {
-                    System.out.print(c + ", ");
-                    printFibonacciNumbers(k);
-                }
-                else System.out.print(c + ".");
-                printFibonacciNumbers(k);
-            }
-
-        }
-
-        public static void main(String[] args) {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("How many numbers do you want ?");
-            int n = scanner.nextInt();
-            if (n==0 || n<0){
-                System.out.println("Please enter a positive number more than 0");
-            }
-            else
-                System.out.print("Result: " + "0, ");
-                printFibonacciNumbers(n-1);
-        }
+        printFibonacciNumbers(-1);
+        printFibonacciNumbers(0);
+        printFibonacciNumbers(1);
+        printFibonacciNumbers(4);
+        printFibonacciNumbers(7);
 
     }
 
+    public static void printFibonacciNumbers(int n) {
+         BigDecimal a = new BigDecimal("0");
+         BigDecimal b = new BigDecimal("1");
 
+        ArrayList<BigDecimal> fibonacci = new ArrayList<BigDecimal>();
+        fibonacci.add(a);
+        fibonacci.add(b);
+        if (n==0 || n<0){
+            System.out.println("Please enter a positive number more than 0");
+            return;
+        }
+        else if (n==1){
+            System.out.println(fibonacci.get(0));
+            return;
+        }
+        for (int i = 2; i <= n-1; i++) {
+            fibonacci.add(fibonacci.get(i - 1).add( fibonacci.get(i-2)));
+        }
+
+
+        String commaSeparatedNumbers = fibonacci.stream()
+                .map(i -> i.toString())
+                .collect(Collectors.joining(", "));
+        System.out.println(commaSeparatedNumbers);
+    }
+}
